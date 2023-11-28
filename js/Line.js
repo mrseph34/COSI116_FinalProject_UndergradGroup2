@@ -1,119 +1,99 @@
-// Sample data for three lines with unique x and y values
-const line_data = [
-  { date: "2023-01-01", line_value1: 10, line_value2: 20, line_value3: 15 },
-  { date: "2023-01-02", line_value1: 15, line_value2: 25, line_value3: 20 },
-  { date: "2023-01-03", line_value1: 20, line_value2: 15, line_value3: 25 },
-];
+// Function to create a line chart
+async function line(id, data) {
+  // Define x, y, and line dimensions
+  let x_dimension = "Time_Detail";
+  let y_dimension = "Value";
+  let line_dimension = "Location";
 
-// Set up dimensions for the graph
-const line_width = 500;
-const line_height = 300;
-const line_margin = { top: 20, right: 20, bottom: 30, left: 50 };
+  // Select the container div using the provided id
+  const div = d3.select(`#${id}`);
+  // Clear any existing elements within the container
+  div.selectAll("*").remove();
 
-// Create an SVG container within the "line-holder" div
-const line_svg = d3.select('.line-holder').append('svg')
-  .attr('width', line_width + line_margin.left + line_margin.right)
-  .attr('height', line_height + line_margin.top + line_margin.bottom)
-  .append('g')
-  .attr('transform', 'translate(' + line_margin.left + ',' + line_margin.top + ')');
+  // Set up chart dimensions
+  const width = div.node().getBoundingClientRect().width * 0.9;
+  const height = div.node().getBoundingClientRect().height * 0.9;
+  const margin = { left: 50, right: 50, top: 50, bottom: 50 };
+  const innerW = width - margin.left - margin.right;
+  const innerH = height - margin.top - margin.bottom;
+  const svg = div.append("svg").attr("width", width).attr("height", height);
 
-// Set up scales for x and y axes
-const line_xScale = d3.scaleBand()
-  .domain(line_data.map(d => d.date))
-  .range([0, line_width])
-  .padding(0.1);
+  // Create the main area to draw the chart
+  const ChartArea = svg
+    .append("g")
+    .attr("transform", `translate(${margin.left},${margin.top})`);
 
-const line_yScale = d3.scaleLinear()
-  .domain([0, d3.max(line_data, d => Math.max(d.line_value1, d.line_value2, d.line_value3))])
-  .range([line_height, 0]);
+  // Create y-axis and x-axis groups
+  const AxisYLeft = ChartArea.append("g");
+  const AxisX = ChartArea.append("g").attr(
+    "transform",
+    `translate(0,${innerH})`
+  );
 
-// Define line functions for each line
-const line_line1 = d3.line()
-  .x(d => line_xScale(d.date))
-  .y(d => line_yScale(d.line_value1));
+  // Add labels for x and y axes
+  ChartArea.selectAll(".x_label")
+    .data([0])
+    .join("text")
+    .attr("class", "x_label")
+    .attr("transform", `translate(${innerW / 2},${innerH + 30})`)
+    .text(x_dimension);
+  // y1 label
+  ChartArea.selectAll(".y_label")
+    .data([0])
+    .join("text")
+    .attr("class", "y_label")
+    .attr("transform", ` translate(10,0) rotate(90)`)
+    .text("Number");
 
-const line_line2 = d3.line()
-  .x(d => line_xScale(d.date))
-  .y(d => line_yScale(d.line_value2));
+  // Handle data - aggregate by line_dimension and x_dimension
+  let chart_data = d3.rollups(
+    data,
+    (d) => d3.mean(d, (v) => +v[y_dimension]),
+    (d) => d[line_dimension],
+    (d) => new Date(d[x_dimension])
+  );
 
-const line_line3 = d3.line()
-  .x(d => line_xScale(d.date))
-  .y(d => line_yScale(d.line_value3));
+  // Set up x, y, and color scales
+  const x_values = d3.extent(data, (d) => new Date(d[x_dimension]));
+  const x = d3.scaleUtc().domain(x_values).range([0, innerW]);
+  const y = d3
+    .scaleLinear()
+    .domain([0, d3.max(chart_data, (d) => d3.max(d[1], (v) => v[1]))])
+    .range([innerH, 0]);
+  let color_domain = [...new Set(data.map((d) => d[line_dimension]))];
+  const color = d3.scaleOrdinal().domain(color_domain).range(d3.schemeAccent);
 
-// Append lines to the SVG
-line_svg.append('path')
-  .data([line_data])
-  .attr('fill', 'none')
-  .attr('stroke', 'blue')
-  .attr('stroke-width', 2)
-  .attr('d', line_line1);
+  // Render x and y axes
+  AxisX.call(d3.axisBottom(x));
+  AxisYLeft.call(d3.axisLeft(y));
 
-line_svg.append('path')
-  .data([line_data])
-  .attr('fill', 'none')
-  .attr('stroke', 'green')
-  .attr('stroke-width', 2)
-  .attr('d', line_line2);
+  // Draw lines for each line_dimension
+  chart_data.forEach((line) => {
+    const linegenerator = d3
+      .line()
+      .x((d) => x(d[0]))
+      .y((d) => y(d[1]));
 
-line_svg.append('path')
-  .data([line_data])
-  .attr('fill', 'none')
-  .attr('stroke', 'red')
-  .attr('stroke-width', 2)
-  .attr('d', line_line3);
+    ChartArea.append("g")
+      .append("path")
+      .datum(line[1])
+      .attr("d", linegenerator)
+      .attr("fill", "none")
+      .attr("stroke", color(line[0]));
+  });
+}
 
-// Add X axis
-line_svg.append('g')
-  .attr('transform', 'translate(0,' + line_height + ')')
-  .call(d3.axisBottom(line_xScale));
+// Function to show line chart on hover
+function show_line(id, data, e) {
+  d3.select("#line-holder")
+    .style("display", "block")
+    .style("position", "absolute")
+    .style("backgroud-color", "white");
 
-// Add Y axis
-line_svg.append('g')
-  .call(d3.axisLeft(line_yScale));
+  line("line-holder", data);
+}
 
-// Add legend
-const line_legend = line_svg.append('g')
-  .attr('transform', 'translate(' + (line_width - 10) + ', 10)');
-
-line_legend.append('rect')
-  .attr('width', 10)
-  .attr('height', 10)
-  .attr('fill', 'blue');
-
-// Add title
-line_svg.append('text')
-  .attr('x', line_width / 2)
-  .attr('y', 0)
-  .attr('text-anchor', 'middle')
-  .style('font-size', '16px')
-  .text('Line Graph Test');
-
-line_legend.append('text')
-  .attr('x', 15)
-  .attr('y', 5)
-  .attr('dy', '0.75em')
-  .text('1');
-
-line_legend.append('rect')
-  .attr('width', 10)
-  .attr('height', 10)
-  .attr('y', 20)
-  .attr('fill', 'green');
-
-line_legend.append('text')
-  .attr('x', 15)
-  .attr('y', 25)
-  .attr('dy', '0.75em')
-  .text('2');
-
-line_legend.append('rect')
-  .attr('width', 10)
-  .attr('height', 10)
-  .attr('y', 40)
-  .attr('fill', 'red');
-
-line_legend.append('text')
-  .attr('x', 15)
-  .attr('y', 45)
-  .attr('dy', '0.75em')
-  .text('3');
+// Function to hide line chart
+function hide_line() {
+  d3.select("#line-holder").style("display", "none");
+}
