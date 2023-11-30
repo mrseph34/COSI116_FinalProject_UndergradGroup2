@@ -93,7 +93,7 @@ function map(id, data, world) {
       .attr("transform", `translate(${20},${innerH - 100})`);
   
     let color_domain = d3.ticks(0, 1, 10);
-    let bar_width = 40;
+    let bar_width = document.getElementById("map-holder").offsetWidth/15;
   
     // Draw rectangles for the legend
     let lgd_rects = legend
