@@ -1,14 +1,15 @@
 // Define an async function named 'draw'
 async function draw() {
     // Check if github pages to use non local fetch or not
-    const isGitHubPages = window.location.hostname === 'github.io';
+    const isGitHubPages = window.location.href.includes('github.io');
+    // console.log(window.location.href)
     let data
     let world
     if (isGitHubPages) {
       // Fetch CSV data from the 'data.csv' file
-      data = await d3.csv("data/data.csv");
+      data = await d3.csv("/data/data.csv");
       // Fetch JSON data from the 'world.json' file
-      world = await d3.json("data/world.json");
+      world = await d3.json("/data/world.json");
     } else {
       // Local Fetchs
       data = await d3.csv("../../data/data.csv");
