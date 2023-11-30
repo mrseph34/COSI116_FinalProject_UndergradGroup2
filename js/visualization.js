@@ -7,9 +7,9 @@ async function draw() {
     let world
     if (isGitHubPages) {
       // Fetch CSV data from the 'data.csv' file
-      data = await d3.csv("/data/data.csv");
+      data = await d3.csv("data/data.csv");
       // Fetch JSON data from the 'world.json' file
-      world = await d3.json("/data/world.json");
+      world = await d3.json("data/world.json");
     } else {
       // Local Fetchs
       data = await d3.csv("../../data/data.csv");
