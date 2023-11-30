@@ -1,3 +1,4 @@
+console.log('test1');
 // Define an async function named 'draw'
 async function draw() {
     // Fetch CSV data from the 'data.csv' file
