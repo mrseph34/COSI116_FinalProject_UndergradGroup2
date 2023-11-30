@@ -2,13 +2,13 @@
 async function draw() {
     // Fetch CSV data from the 'data.csv' file
     let data //= await d3.csv("../../data/data.csv");
-    d3.csv('data/data.csv', function(error, dat) {
-      if (error) {
-        console.error(error);
-        return;
-      }
+    try {
+    const dat = await fetch('data.json').then(response => response.json());
       data = dat
-    });
+    } catch (error) {
+      console.error(error);
+    }
+    
     // Fetch JSON data from the 'world.json' file
     let world //= await d3.json("../../data/world.json");
     d3.json('data/world.json', function(error, data) {
@@ -19,7 +19,7 @@ async function draw() {
       world = data;
     });
     // Iterate through the CSV data
-    data.forEach(function(d) {
+    data.forEach((d) => {
       // Find the corresponding country in the JSON data based on 'GeoAreaName'
       let value = world.features.find(
         (v) => v.properties.name === d["GeoAreaName"]
