@@ -1,23 +1,20 @@
 // Define an async function named 'draw'
 async function draw() {
-    // Fetch CSV data from the 'data.csv' file
-    let data //= await d3.csv("../../data/data.csv");
-    try {
-    const dat = await fetch('data.json').then(response => response.json());
-      data = dat
-    } catch (error) {
-      console.error(error);
+    // Check if github pages to use non local fetch or not
+    const isGitHubPages = window.location.hostname === 'github.io';
+    let data
+    let world
+    if (isGitHubPages) {
+      // Fetch CSV data from the 'data.csv' file
+      data = await d3.csv("/data/data.csv");
+      // Fetch JSON data from the 'world.json' file
+      world = await d3.json("/data/world.json");
+    } else {
+      // Local Fetchs
+      data = await d3.csv("../../data/data.csv");
+      world = await d3.json("../../data/world.json");
     }
-    
-    // Fetch JSON data from the 'world.json' file
-    let world //= await d3.json("../../data/world.json");
-    d3.json('data/world.json', function(error, data) {
-      if (error) {
-        console.error(error);
-        return;
-      }
-      world = data;
-    });
+
     // Iterate through the CSV data
     data.forEach((d) => {
       // Find the corresponding country in the JSON data based on 'GeoAreaName'
