@@ -11,7 +11,7 @@ function bar(id, data) {
   div.selectAll("*").remove();
 
   // Set up chart dimensions
-  const width = div.node().getBoundingClientRect().width * 0.9;
+  const width = div.node().getBoundingClientRect().width * 1;
   const height = div.node().getBoundingClientRect().height * 0.9;
   const margin = { left: 50, right: 50, top: 50, bottom: 50 };
   const innerW = width - margin.left - margin.right;
@@ -32,21 +32,21 @@ function bar(id, data) {
     .data([0])
     .join("text")
     .attr("class", "x_label")
-    .attr("transform", `translate(${innerW / 2},${innerH + 30})`)
+    .attr("transform", `translate(${innerW / 2},${innerH + 40})`)
     .text(x_dimension);
   // y1 label
   ChartArea.selectAll(".y_label")
     .data([0])
     .join("text")
     .attr("class", "y_label")
-    .attr("transform", ` translate(-40,0) rotate(90)`)
+    .attr("transform", ` translate(-30,250) rotate(-90)`)
     .text("Proportion");
 
   // Aggregate and sort data
   let chart_data = d3.rollups(
     data,
     (d) => d3.mean(d, (v) => +v[y_dimension]),
-    (d) => d[x_dimension]
+    (d) => concatenateNames(d[x_dimension])
   );
   chart_data.sort((a, b) => (a[1] > b[1] ? -1 : 1));
 
@@ -59,7 +59,9 @@ function bar(id, data) {
     .range([innerH, 0]);
 
   // Render x and y axes
-  AxisX.call(d3.axisBottom(x));
+  AxisX.call(d3.axisBottom(x))
+  .selectAll("text")
+  .style("font-size", width/110+"px");
   AxisYLeft.call(d3.axisLeft(y));
 
   // Create and style the bars
@@ -73,7 +75,7 @@ function bar(id, data) {
     .attr("width", x.bandwidth())
     .attr("height", (d) => innerH - y(d[1]))
     .attr("stroke", "black")
-    .attr("stroke-width", "0.25")
+    .attr("stroke-width", "1")
     .attr("fill", (d, i) => d3.schemeAccent[i]);
 
   // Add interactions to the bars
@@ -81,6 +83,7 @@ function bar(id, data) {
     .on("mouseenter", (e, d) => {
       // Display information on hover
       let html = ` <p> ${d[0]} :${d[1]}  </p>`;
+      highlight("bar-holder", d[1]);
       highlight("map-holder", d[1]);
       highlight("legend", d[1]);
       // Filter and show additional data on hover
@@ -89,8 +92,37 @@ function bar(id, data) {
     })
     .on("mouseout", (e, d) => {
       // Hide information on mouseout
+      unHighlight("bar-holder", d[1]);
       unHighlight("map-holder", d[1]);
       unHighlight("legend", d[1]);
       hide_line();
     });
+
+    // Custom function to concatenate names
+    function concatenateNames(name) {
+      if (name === "None") {
+        return "Other";
+      }
+      // name = name.replace("North", "N.");
+      // name = name.replace("South", "S.");
+      // name = name.replace("East", "E.");
+      // name = name.replace("West", "W.");
+      return name;
+    }
+    
+}
+
+function regionChange(value) {
+  // Iterate over each rect element
+  d3.selectAll("rect").each(function () {
+    const rect = d3.select(this);
+    // Check if the rect has the specified value and stroke-width
+    if (rect.attr("stroke-width") === "3") {
+      const barName = rect.attr("class");
+      if (barName != null) {
+        globalRegion = barName;
+      // console.log(globalRegion);
+      }
+    }
+  });
 }

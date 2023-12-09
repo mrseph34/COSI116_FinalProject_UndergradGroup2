@@ -95,22 +95,25 @@ h1, h2, h3 {
 	height: 100vh;
 	position: absolute;
 	right: 50%;
+	border-style: solid;
 }
 
 #bar-holder {
-	height: 50vh;
+	height: 62vh;
 	position: absolute;
 	left: 50%;
 	top: 38%;
+	border-style: solid;
 }
 
 #line-holder {
     width: 80%;
-    height: 30%;
+    height: 33%;
     position: absolute;
-    display: none;
-    top: 5%;
+    display: block;
+    top: 0%;
     left: 50%;
+	border-style: solid;
 }
 
 .d3-tip ,#line-holder {
@@ -122,7 +125,7 @@ h1, h2, h3 {
 	box-shadow: 0 4px 20px 4px rgba(0, 20, 60, 0.1),
 	  0 4px 80px -8px rgba(0, 20, 60, 0.2);
 	background-color: #fff;
-	border-radius: 4px;
+	/* border-radius: 4px; */
   }
   
   .d3-tip:after {

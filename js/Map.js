@@ -67,8 +67,8 @@ function map(id, data, world) {
     // Style map paths with fill color, stroke, and class/id attributes
     mapPath
       .attr("fill", (d) => color_scale(+d.value))
-      .attr("stroke", "gray")
-      .attr("stroke-width", "0.2")
+      .attr("stroke", "black")
+      .attr("stroke-width", "1")
       .attr("class", (d) => d.properties.name)
       .attr("id", (d) => "map-holder" + range_scale(d.value));
   
@@ -76,12 +76,14 @@ function map(id, data, world) {
     mapPath
       .on("mouseenter", (e, d) => {
         let html = ` <p> ${d.properties.name} :${d3.format(".2f")(d.value)}%  </p>`;
+        highlight("map-holder", d.value);
         highlight("bar-holder", d.value);
         highlight("legend", d.value);
         let filter_data = data.filter((v) => v["GeoAreaName"] === d.properties.name);
         show_line("line-holder", filter_data, e);
       })
       .on("mouseout", (e, d) => {
+        unHighlight("map-holder", d.value);
         unHighlight("bar-holder", d.value);
         unHighlight("legend", d.value);
         hide_line();
@@ -100,7 +102,7 @@ function map(id, data, world) {
       .selectAll("rect")
       .data(color_domain)
       .join("rect")
-      .attr("stroke", "gray")
+      .attr("stroke", "black")
       .attr("width", bar_width)
       .attr("height", 10)
       .attr("y", 20)
@@ -116,18 +118,41 @@ function map(id, data, world) {
       .attr("y", 45)
       .attr("x", (d, i) => i * bar_width)
       .text((d) => d3.format(".0%")(d))
-      .attr("font-size", 12)
+      .attr("font-size", width/50)
       .attr("fill", "gray");
   
+    // Add a title
+    svg.append("text")
+    .attr("class", "chart-title")
+    .attr("x", innerW / 1.8)
+    .attr("y", margin.top + 20)
+    .attr("text-anchor", "middle")
+    .style("font-size", innerW/15)
+    .style("font-weight", "bold")
+    .text("Region Map");
+
+    // Add a name 4 region
+    svg.append("text")
+    .attr("id", "region-name")
+    .attr("x", innerW / 1.8)
+    .attr("y", innerH + 5)
+    .attr("text-anchor", "middle")
+    .style("font-size", innerW/20)
+    .style("font-weight", "bold")
+    .text("NO REGION MATCHES");
+
     // Add interactions to legend rectangles
     lgd_rects
       .on("mouseenter", (e, d) => {
+        highlight("legend", d * 100);
         highlight("bar-holder", d * 100);
         highlight("map-holder", d * 100);
       })
       .on("mouseout", (e, d) => {
+        unHighlight("legend", d * 100);
         unHighlight("bar-holder", d * 100);
         unHighlight("map-holder", d * 100);
       });
+
   }
   
