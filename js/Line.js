@@ -1,5 +1,5 @@
 // Define the color scale outside the line function
-const lineDimensions = []; // Initialize an empty array to store unique line dimensions
+const lineDimensions = ["ALLAREA", "URBAN", "RURAL"];
 const color = d3.scaleOrdinal().range(d3.schemeBlues[3]); // Set up a color scale with a fixed range
 
 // Function to create a line chart
@@ -95,34 +95,34 @@ async function line(id, data) {
     color.domain(lineDimensions); // Set the domain of the color scale once with unique line dimensions
   }
 
-  // Create a legend
+  /// Create a legend
   const legend = svg
-    .append("g")
-    .attr("transform", `translate(${innerW + margin.right - 80}, 0)`);
+  .append("g")
+  .attr("transform", `translate(${innerW + margin.right - 80}, 0)`);
 
   // Add legend entries
-  legend
-    .selectAll("legend-entry")
-    .data(lineDimensions)
-    .enter()
-    .append("g")
-    .attr("class", "legend-entry")
-    .attr("transform", (d, i) => `translate(0, ${i * 20})`)
-    .call((g) =>
-      g
-        .append("rect")
-        .attr("width", 18)
-        .attr("height", 18)
-        .attr("fill", (d) => color(d))
-    )
-    .call((g) =>
-      g
-        .append("text")
-        .attr("x", 24)
-        .attr("y", 9)
-        .attr("dy", "0.35em")
-        .text((d) => d)
-    );
+  const legendEntries = legend
+  .selectAll("legend-entry")
+  .data(lineDimensions)
+  .enter()
+  .append("g")
+  .attr("class", "legend-entry")
+  .attr("transform", (d, i) => `translate(0, ${i * 20})`);
+
+  // Append rectangles for legend entries
+  legendEntries
+  .append("rect")
+  .attr("width", 18)
+  .attr("height", 18)
+  .attr("fill", (d) => color(d));
+
+  // Append text for legend entries
+  legendEntries
+  .append("text")
+  .attr("x", 24)
+  .attr("y", 9)
+  .attr("dy", "0.35em")
+  .text((d) => d);
 
   // Add a title
   svg.append("text")
