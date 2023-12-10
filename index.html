@@ -41,10 +41,36 @@
     
     <h1>Motivation</h1>
     
-    <p><em>Summary of user needs and motivating questions.</em></p>
-    
-    <p><em>Expectation: There is a clear focus, and a developed explanation of the problem, and a reasonable response is proposed.</em></p>
+    <h2>Problem Statement</h2>
+    <p>
+        Our visualization project aims to address the critical issue of safe drinking water accessibility across different regions globally. The project recognizes the importance of visualizing data to gain insights into the disparities and improvements in water accessibility over the years.
+    </p>
 
+    <h2>User Needs</h2>
+    <p>
+        To effectively meet the needs of our users, we considered the following key requirements:
+    </p>
+    <ul>
+        <li><strong>Geographical Understanding:</strong> Users should be able to explore and understand safe water percentages across various regions.</li>
+        <li><strong>Temporal Analysis:</strong> Users should have the capability to analyze trends and changes in safe water accessibility over different years.</li>
+        <li><strong>Comparative Analysis:</strong> The visualization should facilitate the comparison of safe water percentages between different regions and time periods.</li>
+        <li><strong>Insightful Exploration:</strong> Users should be able to hover over map regions and related visualizations to gain detailed information and insights.</li>
+    </ul>
+
+    <h2>Motivating Questions</h2>
+    <p>
+        The visualization is designed to address the following motivating questions:
+    </p>
+    <ol>
+        <li><strong>How has safe drinking water accessibility changed globally over the past years?</strong></li>
+        <li><strong>What are the regional disparities in safe water percentages, and how have they evolved?</strong></li>
+        <li><strong>Are there specific regions that have shown significant improvements or declines in safe water accessibility?</strong></li>
+        <li><strong>How does the safe water situation vary between urban and rural areas?</strong></li>
+    </ol>
+
+    <p>
+        By focusing on these user needs and motivating questions, our visualization provides a comprehensive understanding of the global landscape of safe drinking water accessibility.
+    </p>
     
     <h1>Visualization</h1>
     
@@ -63,43 +89,200 @@
 
     <h1>Demo Video</h1>
     
-    <p><em>Embedded MP4 demo video using the HTML5 &lt;video&gt; tag. For example, this screen recording Prof. Cody Dunne made of Mike Bostock's flexible transitions in D3 slide:</em></p>
+    <p><em>VIDEO MAKING IN PROGRESS - HEY LOOK YOUR IN IT! :o</em></p>
     
     <video controls width="100%">
-      <source src="http://www.ccs.neu.edu/home/cody/courses/shared/d3-flexible-transitions.mp4" type="video/mp4">
+      <source type="video/mp4">
       <p>Your browser doesn't support HTML5 video. Here is
        a <a href="http://www.ccs.neu.edu/home/cody/courses/shared/d3-flexible-transitions.mp4">link to the video</a> instead.</p>
     </video>
 
     <h1>Visualization explanation</h1>
     
-    <p><em>Final visualization screenshots (PNG images), design justifications, UI walk-through, and linked presentation slides.</em></p>
+    <img id="finalimg" alt="Final Project Image" style="width: 100%;">
 
+    <h2>Overview</h2>
+    <p>
+        In our COSI116 Final Project, we present a comprehensive visualization suite to convey insights into safe drinking water accessibility.
+        This suite consists of a choropleth map, a bar chart, and a line chart. Each visualization serves a unique purpose, contributing to a holistic understanding of the data.
+    </p>
+
+    <h2>Design Justifications</h2>
+
+    <h3>Choropleth Map</h3>
+    <p>
+        <strong>Purpose:</strong> Geographical representation of safe drinking water accessibility.
+    </p>
+    <p>
+        <strong>Design Choices:</strong>
+    </p>
+    <ul>
+        <li><strong>Color Scale:</strong> Blue shades represent varying percentages of safe water accessibility.</li>
+        <li><strong>Legend:</strong> Provides a clear reference for interpreting the color scale.</li>
+    </ul>
+
+    <h3>Bar Chart</h3>
+    <p>
+        <strong>Purpose:</strong> Comparative view of safe water proportions across regions.
+    </p>
+    <p>
+        <strong>Design Choices:</strong>
+    </p>
+    <ul>
+        <li><strong>Bar Colors:</strong> Distinct colors enhance visual identification.</li>
+        <li><strong>Interaction:</strong> Hovering over a bar highlights the corresponding region on the map.</li>
+    </ul>
+
+    <h3>Line Chart</h3>
+    <p>
+        <strong>Purpose:</strong> Focuses on the temporal aspect of safe water accessibility, showing trends over the years.
+    </p>
+    <p>
+        <strong>Design Choices:</strong>
+    </p>
+    <ul>
+        <li><strong>Line Dimensions:</strong> Different lines represent various locations.</li>
+        <li><strong>Interaction:</strong> Hovering over a line provides detailed information for a specific location and year.</li>
+    </ul>
+
+    <h2>UI Walk-through</h2>
+
+    <h3>Choropleth Map</h3>
+    <ol>
+        <li><strong>Color Legend:</strong> Interpret the map by referring to the color legend for safe water percentages.</li>
+        <li><strong>Hover Interaction:</strong> Hover over a region to see detailed information about safe water accessibility.</li>
+    </ol>
+
+    <h3>Bar Chart</h3>
+    <ol>
+        <li><strong>Regional Comparison:</strong> Easily compare safe water proportions across regions using distinct colors.</li>
+        <li><strong>Map Interaction:</strong> Hover over a bar to highlight the corresponding region on the choropleth map.</li>
+    </ol>
+
+    <h3>Line Chart</h3>
+    <ol>
+        <li><strong>Temporal Trends:</strong> Explore temporal trends in safe water accessibility.</li>
+        <li><strong>Location Comparison:</strong> Hover over lines to view detailed information for specific locations and years.</li>
+    </ol>
     <h1>Data Analysis</h1>
-    <p><em>Summary of data, data types, and data preprocessing.</em></p>
+    <h2>Data Sources</h2>
+        <p>
+            The data for our COSI116 Final Project is sourced from reputable organizations to ensure accuracy and relevance to the problem statement.
+        </p>
+        <ul>
+            <li><strong>World Geo JSON Data:</strong> Provided by Johan Merge, it forms the basis for our choropleth map visualization.</li>
+            <li><strong>UN Stats Clean Water Accessibility:</strong> Offers comprehensive data on safe drinking water percentages across regions and years.</li>
+        </ul>
 
-    <p><em>Expectation: Data sources match the problem statement and are appropriate. These descriptions should be very explicit so someone could read your page and properly reproduce your results.</em></p>
+        <h2>Data Types</h2>
+        <p>
+            The dataset includes the following key data types:
+        </p>
+        <ul>
+            <li><strong>Numeric Data:</strong> Safe water percentages are represented as numerical values, forming the basis for visualizations.</li>
+            <li><strong>Categorical Data:</strong> Regions and locations are represented as categorical data, facilitating geographical analysis.</li>
+            <li><strong>Temporal Data:</strong> Time-related information allows for the exploration of trends over the years.</li>
+        </ul>
 
+        <h2>Data Preprocessing</h2>
+        <p>
+            To ensure the dataset's suitability for visualization, we performed the following preprocessing steps:
+        </p>
+        <ol>
+            <li><strong>Data Cleaning:</strong> Removal of any irrelevant or incomplete entries to maintain data integrity.</li>
+            <li><strong>Data Integration:</strong> Combining data from different sources to create a unified dataset for visualization.</li>
+            <li><strong>Data Aggregation:</strong> Aggregating data at various levels (regional, temporal) for meaningful visualizations.</li>
+        </ol>
+
+        <p>
+            The processed data is then used in our choropleth map, bar chart, and line chart visualizations to effectively communicate insights into safe drinking water accessibility.
+        </p>
     <h1>Task Analysis</h1>
 
-    <p><em>Summary of task table.</em></p>
+    
+    <h2>Domain Tasks</h2>
+    <p>
+        The tasks in our domain involve the exploration and analysis of safe drinking water accessibility data. Key domain tasks include:
+    </p>
+    <ul>
+        <li><strong>Explore Safe Water Percentages:</strong> Users should be able to explore safe water percentages across different regions and years.</li>
+        <li><strong>Compare Regions:</strong> Enable users to compare safe water accessibility between various regions globally.</li>
+        <li><strong>Temporal Analysis:</strong> Users should conduct temporal analysis to understand how safe water percentages have changed over time.</li>
+        <li><strong>Insightful Hover:</strong> Users can gain insights by hovering over map regions, linking to related bar charts and line graphs.</li>
+    </ul>
 
-    <p><em>Expectation: Clearly describes domain tasks, processes, goals and abstract tasks for domain problems.</em></p>
+    <h2>Processes and Goals</h2>
+    <p>
+        The processes and goals of our visualization project are aligned with providing a comprehensive understanding of safe drinking water accessibility. These include:
+    </p>
+    <ul>
+        <li><strong>Data Processing:</strong> Aggregating and processing data to derive meaningful insights.</li>
+        <li><strong>Visualization:</strong> Creating interactive maps, bar charts, and line graphs to represent the data visually.</li>
+        <li><strong>User Interaction:</strong> Facilitating user interaction for dynamic exploration and analysis.</li>
+        <li><strong>Insight Generation:</strong> Aiding users in generating insights through visual exploration.</li>
+    </ul>
 
+    <h2>Abstract Tasks</h2>
+    <p>
+        Abstract tasks are designed to achieve specific objectives within the visualization project. These include:
+    </p>
+    <ul>
+        <li><strong>Hover Interaction:</strong> Implementing interactive hover features for map regions and related visualizations.</li>
+        <li><strong>Dynamic Updates:</strong> Ensuring dynamic updates in the bar chart and line graph based on user interactions.</li>
+        <li><strong>Comparative Analysis:</strong> Enabling users to compare safe water percentages visually.</li>
+        <li><strong>Temporal Exploration:</strong> Allowing users to explore temporal patterns in safe water accessibility.</li>
+    </ul>
     <h1>Design Process</h1>
     
-    <p><em>Sketches and design choices to justify final visualization.</em></p>
+    <p>
+      Our visualization journey involved iterative improvements guided by principles of information visualization. We carefully considered visual encodings, marks, and channels to enhance user understanding of safe drinking water accessibility data.
+  </p>
 
-    <p><em>Expectation: Evidence of iterative improvement.
-    Logical discussion of design choices grounded in theory from course.
-    Discusses feedback from usability testing.</em></p>
+  <h2>Initial Sketches</h2>
+  <p>
+      Our initial sketches focused on exploring different visual encodings to represent safe water percentages across regions and years. We experimented with various mark types and channels to find the most effective way to communicate the data.
+  </p>
 
+  <h2>Visual Encodings</h2>
+  <p>
+      Through iterative design, we opted for a choropleth map as the primary visual encoding. The use of color gradients on map regions serves as an effective channel to represent variations in safe water percentages. We carefully selected color schemes to ensure intuitive interpretation, with blue hues representing higher percentages.
+  </p>
+
+  <h2>Marks and Channels</h2>
+  <p>
+      Marks in our visualization include map polygons, bars in the bar chart, and lines in the temporal line graph. Each mark is strategically chosen to convey specific data attributes. For instance, the length of bars in the bar chart serves as a channel to represent the proportion of safe water, while the position of the line on the y-axis in the line graph depicts the percentage over time.
+  </p>
+
+  <h2>Iterative Improvements</h2>
+  <p>
+      Feedback from usability testing played a crucial role in our iterative design process. Users' interactions guided adjustments in color choices, mark sizes, and overall layout. The goal was to create a visually appealing and intuitive visualization that effectively communicates the story within the data.
+  </p>
+
+  <h2>Interactive Features</h2>
+  <p>
+      To enhance user engagement, we introduced interactive features such as hover effects. Hovering over map regions dynamically updates related bar chart and line graph elements, facilitating comparative analysis. These interactive channels provide users with a more immersive and exploratory experience.
+  </p>
 
     <h1>Conclusion</h1>
 
-    <p><em>Short summary of work completed and areas for improvement/future-work.</em></p>
-    
-    <p><em>Expectation: Meaningfully wraps up project and has good future directions.</em></p>
+    <p>
+            Our project aimed to provide a comprehensive visualization of safe drinking water accessibility data, allowing users to explore patterns and trends across regions and years. Through the implementation of interactive visualizations, we sought to create an engaging and informative user experience.
+        </p>
+
+        <h2>Completed Work</h2>
+        <p>
+            The project successfully implemented a choropleth map, bar chart, and line graph to represent safe water percentages. Interactive features, such as brushing and dynamic updates, enhance user interaction and exploration. The integration of visual encodings, marks, and channels aligns with principles of information visualization, resulting in a visually appealing and effective representation of the data.
+        </p>
+
+        <h2>Areas for Improvement</h2>
+        <p>
+            While the project has achieved its primary objectives, there are areas for improvement. User feedback highlighted potential enhancements in color choices, tooltips, and additional contextual information. Improving the responsiveness and performance of the visualizations, especially with larger datasets, is another consideration for future iterations.
+        </p>
+
+        <h2>Future Work</h2>
+        <p>
+            Future work could focus on expanding the dataset to include more granular information, mainly seeing the names of areas on the map but then also things such as water source types or regional policies impacting water accessibility. Further refinement of the user interface and additional visual analytics features could contribute to a more robust and user-friendly tool. Collaboration with domain experts and stakeholders would also ensure the visualization aligns with real-world implications and policy discussions.
+        </p>
 
     
     <h1>Acknowledgments</h1>

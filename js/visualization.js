@@ -20,16 +20,22 @@ async function draw() {
   // console.log(window.location.href)
   let data
   let world
+  let final_src // final image source
   if (isGitHubPages) {
     // Fetch CSV data from the 'data.csv' file
     data = await d3.csv("data/data.csv");
     // Fetch JSON data from the 'world.json' file
     world = await d3.json("data/world.json");
+    final_src="images/final prject img.png"
   } else {
     // Local Fetchs
     data = await d3.csv("../../data/data.csv");
     world = await d3.json("../../data/world.json");
+    final_src="../../images/final prject img.png"
   }
+
+  //make img show up on html for final pic
+  d3.select("#finalimg").attr("src", final_src);
 
   // Iterate through the CSV data
   data.forEach((d) => {
