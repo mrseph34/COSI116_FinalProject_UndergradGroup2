@@ -28,13 +28,13 @@ async function draw() {
     // Fetch JSON data from the 'world.json' file
     world = await d3.json("data/world.json");
     final_src= "images/final prject img.png";
-    vid_src = "COSI116-Video-Demo.mp4";
+    vid_src = "files/COSI116-Video-Demo.mp4";
   } else {
     // Local Fetchs
     data = await d3.csv("../../data/data.csv");
     world = await d3.json("../../data/world.json");
     final_src= "../../images/final prject img.png";
-    vid_src = "../../COSI116-Video-Demo.mp4";
+    vid_src = "../../files/COSI116-Video-Demo.mp4";
   }
 
   //make img show up on html for final pic same for vid
