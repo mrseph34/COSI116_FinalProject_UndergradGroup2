@@ -40,6 +40,8 @@ async function draw() {
   //make img show up on html for final pic same for vid
   d3.select("#finalimg").attr("src", final_src);
   d3.select("#vidshiz").attr("src", vid_src);
+  const video = document.getElementById("vid");
+  video.load();
 
   // Iterate through the CSV data
   data.forEach((d) => {
