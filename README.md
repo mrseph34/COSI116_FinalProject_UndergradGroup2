@@ -1,87 +1,87 @@
-# COSI 116A Final Project Template
+# COSI116 Final Project - Undergrad Group 2
 
-This template will help you get started with your project. Please look through all these materials so you know how to organize your project.
+# About
+This project showcases an interactive web application that combines a map, bar chart, and line graph to visualize the percentage of areas with safe water access in different regions, including urban and rural breakdowns. Users can explore the data by hovering over the map and observing how it dynamically links to the bar chart and line graph.
 
-## The GitHub Pages Website
+* Visit the live demo:  https://mrseph34.github.io/COSI116_FinalProject_UndergradGroup2/
 
-Make sure you publish your project to github pages, and put the URL here: 
+# Features
+Interactive Map: Hover over map regions to view details and interact with associated charts.
+Bar Chart: Displays the proportion of areas with safe water access for selected regions.
+Line Graph: Shows the historical trends of safe water access percentages for all areas, urban, and rural categories.
+Getting Started
 
-### Github Pages
+bash
+Copy code
+git clone https://github.com/mrseph34/COSI116_FinalProject_UndergradGroup2.git
+Navigate to the project directory:
 
-For your final project, you must render your project as a Github Page.  Github pages is a feature of GitHub repositories that gives you a publicly available URL that loads your repository.  The link to the page corresponding to your repository should be written into the readme file of your repository.
+bash
+Copy code
+cd COSI116_FinalProject_UndergradGroup2
+Install dependencies:
 
-To publish your repository, follow the instructions at https://pages.github.com/.  You'll have to go to the settings of your repository and point GitHub Pages to your master branch.  Your GitHub Pages link will be of the following format:
+bash
+Copy code
+npm install
+Usage
+Open index.html in your preferred web browser.
 
-    https://cosi116a-brandeis-infovis-fall23.github.io/graduate-team-12-mbta
+Hover over map regions or vice versa to see dynamic updates in the bar chart and line graph.
 
-Note that you may have to clear your cache and reload (Ctrl+F5 on Chrome) a few times before seeing your page.
+- Interactive Water Access Visualization -
+Welcome to our interactive water access visualization! This tool provides a comprehensive view of safe drinking water percentages across different regions. Dive into the details by exploring the following features:
 
+- Map Interaction -
 
-## Setup
+Hover over Map Regions:
+Hover over specific regions on the map to reveal key information about safe water access percentages.
+The highlighted region will dynamically update the associated bar chart and line graph.
 
-**Under no circumstances should you be editing files via the GitHub user interface.** Do all your edits locally after cloning the repository.
+- Bar Chart -
+Dynamic Updates:
+As you hover over map regions, the bar chart reflects real-time changes based on the selected region.
+The bars represent the proportion of safe drinking water in the chosen region.
 
-1. Clone this repository to your local machine. E.g., in your terminal / command prompt `CD` to where you want this the folder for this activity to be. Then run `git clone <YOUR_REPO_URL>`
+Color-Coded Bars:
+Each bar is color-coded to represent a specific region, facilitating easy identification.
+Legend: A x axis legend is provided to match colors with corresponding regions.
 
-1. In `README.md` update the URL above to point to your GitHub pages website.
+- Line Graph - 
 
-1. `CD` or open a terminal / command prompt window into the cloned folder.
+Temporal Trends:
+The line graph illustrates historical trends in safe drinking water percentages.
+It includes separate lines for overall, urban, and rural areas, providing a comprehensive overview.
 
-1. Start a simple python webserver. E.g., one of these commands:
-    * `python -m http.server 8000`
-    * `python3 -m http.server 8000`
-    * `py -m http.server 8000`
-    If you are using Python 2 you will need to use `python -m SimpleHTTPServer 8000` instead, but please switch to Python 3 as [Python 2 was sunset on 2020.01.01](https://www.python.org/doc/sunset-python-2/).
+- Additional Features - 
 
-1. Wait for the output: `Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/)`
+Global Overview:
+Observe the overall safe water access percentage globally without highlighting any specific region.
 
-1. Now open your web browser (Firefox or Chrome) and navigate to the URL: http://localhost:8000
+Legend:
+The legend indicates the color codes for different regions, making it easy to interpret the map and bar chart.
 
-## Root Files
-* `README.md` is this explanatory file for the repo.
+Titles:
+The map, bar chart, and line graph each have informative titles to guide users and provide context.
 
-* `index.html` contains the main website content. It includes comments surrounded by `<!--` and `-->` to help guide you through making your edits.
+Highlighting Effect:
+When interacting with the graphs, a highlighting effect is applied to the selected region, making it visually distinct.
+For example, highlighted regions on the map outline red, and corresponding bars in the bar chart and points in the line graph are emphasized.
 
-* `style.css` contains the CSS.
+Customization
+If you want to customize or extend the project, you can modify the code in the respective JavaScript files. Refer to the comments in the code for guidance.
 
-* `LICENCE` is your source code license.
+Contributing
+We welcome contributions! If you find a bug, have a feature request, or want to contribute code, please follow our contribution guidelines.
 
-## Folders
-Each folder has an explanatory `README.md` file
-
-* `data` is where you will put your data files.
-
-* `favicons` contains the favicons for the course projects. You shouldn't change anything here.
-
-* `files` will contain your slides (PDF) and video (MP4).
-
-* `images` will contain your screenshots, diagrams, and photos.
-
-* `js` will contain all JavaScript files you write.
-
-  * `visualization.js` is the main code that builds all your visualizations. Each visualization should be built following the [Reusable Chart model](https://bost.ocks.org/mike/chart/)
-  
-* `lib` will contain any JavaScript library you use. It currently includes D3.
-
-## Workflow
-
-As you work with your team, you may have issues merging your changes. We recommend you pick one member of the team to be the project manager and deal with merging any pull requests.
-
-Instead of all working directly out of the main `master` branch, you can try adopting a Git branching model for development. See, e.g., [this article by Vincent Driessen](https://nvie.com/posts/a-successful-git-branching-model/) and the included image:
-
-![Image of Git branching model by Vincent Driessen](http://www.ccs.neu.edu/home/cody/courses/shared/git-model.png)
-
-## Grading
-
-Make sure to check these aspects of your work, which are important for every submission:
-
-* Coding was done properly:
-    * Your code was regularly committed and not edited via the GitHub user interface online.
-    * You have clear, commented, and validated code.
-    * Your web page loads properly and looks as expected in the latest Firefox and Chrome browsers.
-    * Any code from other sources (modified or copied straight) is acknowledged.
-
-* Your visualization works as required:
-    * Styles are consistent across views.
-    * None of the visualizations change size or move on the screen as you interact with them.
-    
+- Acknowledgments -
+Special thanks to:
+World Geo JSON Data by Johan Merge.
+Animated U.S. Border Map by Beert Spaan.
+Clean Water Accessibility by UN Stats.
+Creating Line Chart by Mike Bostock.
+Creating Bar Chart by Per Harald Borgen.
+D3 Brushing by Philippe Rivière.
+Interactive HTML Table by Jonah Williams.
+Arrow Function Expressions by MDN Web Docs.
+SVG by MDN Web Docs.
