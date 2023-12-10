@@ -29,16 +29,16 @@ Open index.html in your preferred web browser.
 
 Hover over map regions or vice versa to see dynamic updates in the bar chart and line graph.
 
-- Interactive Water Access Visualization -
+# - Interactive Water Access Visualization -
 Welcome to our interactive water access visualization! This tool provides a comprehensive view of safe drinking water percentages across different regions. Dive into the details by exploring the following features:
 
-- Map Interaction -
+# - Map Interaction -
 
 Hover over Map Regions:
 Hover over specific regions on the map to reveal key information about safe water access percentages.
 The highlighted region will dynamically update the associated bar chart and line graph.
 
-- Bar Chart -
+# - Bar Chart -
 Dynamic Updates:
 As you hover over map regions, the bar chart reflects real-time changes based on the selected region.
 The bars represent the proportion of safe drinking water in the chosen region.
@@ -47,13 +47,13 @@ Color-Coded Bars:
 Each bar is color-coded to represent a specific region, facilitating easy identification.
 Legend: A x axis legend is provided to match colors with corresponding regions.
 
-- Line Graph - 
+# - Line Graph - 
 
 Temporal Trends:
 The line graph illustrates historical trends in safe drinking water percentages.
 It includes separate lines for overall, urban, and rural areas, providing a comprehensive overview.
 
-- Additional Features - 
+# - Additional Features - 
 
 Global Overview:
 Observe the overall safe water access percentage globally without highlighting any specific region.
@@ -74,7 +74,7 @@ If you want to customize or extend the project, you can modify the code in the r
 Contributing
 We welcome contributions! If you find a bug, have a feature request, or want to contribute code, please follow our contribution guidelines.
 
-- Acknowledgments -
+# - Acknowledgments -
 Special thanks to:
 World Geo JSON Data by Johan Merge.
 Animated U.S. Border Map by Beert Spaan.
